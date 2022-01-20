@@ -1,22 +1,16 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 .student-card {
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   margin: 1rem;
-  padding: 0.3rem;
-  max-width: 300px;
-  border: 1px solid black;
+  max-width: 250px;
+  box-shadow: 1px 2px 8px 2px rgba(155, 155, 155, 0.644);
 }
 
 .student-img {
-  max-width: 99%;
+  max-width: 100%;
 }
 
 .student-name {
@@ -28,5 +22,5 @@
 }
 
 .student-gpa {
-  margin-top: 0.5rem;
+  margin: 0.5rem 0;
 }

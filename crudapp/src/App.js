@@ -1,10 +1,12 @@
 import React from "react";
-import StudentCard from "./components/StudentCard";
+import AllStudentsPage from "./components/AllStudentsPage";
+import "./App.css";
 
 export default function App() {
   return (
     <div className="App">
-      <StudentCard />
+      {/* navbar */}
+      <AllStudentsPage />
     </div>
   );
 }
