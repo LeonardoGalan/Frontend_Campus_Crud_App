@@ -1,0 +1,13 @@
+.home-btn{
+    margin-right:auto;
+    margin-left: 5px;
+}
+.student-btn{
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+nav{
+    display: flex;
+    background-color: gray;
+}
