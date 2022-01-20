@@ -4,16 +4,20 @@ import {CampusCard} from './CampusCard'
 import NavBar from './NavBar'
 import {Routes, Route} from 'react-router-dom'
 
-function App() {
+import React from "react";
+import AllStudentsPage from "./components/AllStudentsPage";
+
+
+export default function App() {
   return (
     <div className="App">
+
       <NavBar/>
       <Routes>
       <Route path="/CampusCard" element={<CampusCard/>}/>
       <Route path="/" element={<div>Hello world</div>}/>
+      <Route path="/Students" element={ <AllStudentsPage />}/>
       </Routes>
-    </div>
+  </div>
   );
 }
-
-export default App;
