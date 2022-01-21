@@ -1,46 +1,35 @@
-import './App.css';
-import CampusCard from './components/CampusCard'
-import NavBar from './components/NavBar'
-import {Routes, Route} from 'react-router-dom'
 import React from "react";
-import AllStudentsPage from "./components/AllStudentsPage";
-import Home from "./components/Home"
-import Form from "./components/Form"
-import EditCampus from './components/EditCampus';
-import Dropdown from './components/Dropdown';
-import ShowSingle from './components/ShowSingle';
-
+import axios from 'axios'
+import { Routes, Route } from "react-router-dom";
+import { NavBar, Home } from "./components";
+import { CampusForm, Dropdown, ShowSingle, StudentForm } from "./components/generic";
+import { CampusCard, EditCampus } from "./components/campuses";
+import { AllStudentsPage } from "./components/students";
+import "./styles/App.css";
 
 export default function App() {
+  const [students, setStudents] = React.useState([]);
+  const [campuses, setCampuses] = React.useState([]);
+
+  React.useEffect(()=>{
+    setStudents(axios.get("").data)
+  }, [])
+
+  React.useEffect(()=>{
+    setCampuses(axios.get("").data)
+  }, [])
+
+
   return (
     <div className="App">
-
-      <NavBar/>
+      <NavBar />
       <Routes>
-      <Route path="/CampusCard" element={<CampusCard/>}/>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/Students" element={ <AllStudentsPage />}/>
+        <Route path="/CampusCard" element={<CampusCard />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/Students" element={<AllStudentsPage 
+          students = {students}
+        />} />
       </Routes>
-
-      <Form
-        name = "Campus"
-      />
-
-      <Form
-        name = "Student"
-      />
-
-      <EditCampus/>
-
-      <Dropdown
-        name=" to Campus"
-      />
-
-      <Dropdown
-        name="Students"
-      />
-
-      <ShowSingle/>
-  </div>
+    </div>
   );
 }

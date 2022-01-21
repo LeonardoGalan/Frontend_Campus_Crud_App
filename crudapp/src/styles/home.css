@@ -31,3 +31,9 @@
     background: #ddd;
     color: black;
   }
+
+  body{
+    background-image: url("../images/homeBackground.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
