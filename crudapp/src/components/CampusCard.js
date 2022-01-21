@@ -1,5 +1,5 @@
 import React,{useState} from "react"
-import './App.css'
+import '../App.css'
 
 
 
@@ -34,4 +34,4 @@ function CampusCard(){
 }
 
 
-export {CampusCard}
+export default CampusCard
