@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { NavBar, Home } from "./components";
-import { Form, Dropdown, ShowSingle } from "./components/generic";
+import { CampusForm, Dropdown, ShowSingle, StudentForm } from "./components/generic";
 import { CampusCard, EditCampus } from "./components/campuses";
 import { AllStudentsPage } from "./components/students";
-import ".styles/App.css";
+import "./styles/App.css";
 
 export default function App() {
   return (
@@ -16,9 +16,9 @@ export default function App() {
         <Route path="/Students" element={<AllStudentsPage />} />
       </Routes>
 
-      <Form name="Campus" />
+      <CampusForm/>
+      <StudentForm/>
 
-      <Form name="Student" />
 
       <EditCampus />
 
