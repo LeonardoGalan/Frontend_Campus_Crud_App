@@ -1,5 +1,49 @@
+.all-student-header {
+  margin-top: 5rem;
+  text-align: center;
+  font-size: 5rem;
+}
+
+hr {
+  border: 1px solid rgba(167, 167, 167, 0.431);
+  width: 130px;
+  margin: 0 auto;
+}
+
 .all-student-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 1rem auto 0;
+  max-width: 70%;
+}
+
+/* pagination buttons style */
+
+.pagination-container {
+  color: rgba(161, 161, 161, 0.623);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0 5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.pagination-container button {
+  color: rgba(161, 161, 161, 0.623);
+  background-color: white;
+  margin: 0 2rem;
+  padding: 0.8rem 1rem;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+}
+
+.pagination-container button:hover {
+
+}
+
+.pagination-container button:active {
+  border: 1px solid rgba(192, 192, 192, 0.705);
 }
