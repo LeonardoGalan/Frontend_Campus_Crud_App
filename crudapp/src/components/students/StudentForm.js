@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useState } from "react";
+import api from "../../api";
 
 function StudentForm() {
   const [inputVal, setInputVal] = useState({
@@ -33,8 +33,9 @@ function StudentForm() {
     };
 
     // POST request to backend server
-    axios
-      .post(`http://localhost:8080/students/`, newStudent)
+    /* TODO refactor */
+    api
+      .post(`students/`, newStudent)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 

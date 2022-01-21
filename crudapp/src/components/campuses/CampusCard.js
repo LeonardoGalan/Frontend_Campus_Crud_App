@@ -1,10 +1,11 @@
 import React from "react";
-import axios from "axios";
+import api from "../../api";
 
 function CampusCard(props) {
+  /* refactor to app component */
   function handleDelete(event) {
-    axios
-      .delete(`http://localhost:8080/campuses/College1`)
+    api
+      .delete(`campuses/${props.campus.name}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }

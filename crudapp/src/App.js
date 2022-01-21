@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import axios from "axios";
+import api from "./api";
 import "./styles/App.css";
 
 import { NavBar, Home } from "./components";
@@ -12,15 +12,15 @@ export default function App() {
   const [campuses, setCampuses] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/students/")
+    api
+      .get("students/")
       .then((results) => setStudents(results.data))
       .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/campuses")
+    api
+      .get("campuses/")
       .then((results) => setCampuses(results.data))
       .catch((err) => console.log(err));
   }, []);
