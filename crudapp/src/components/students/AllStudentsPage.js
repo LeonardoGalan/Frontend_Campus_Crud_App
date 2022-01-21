@@ -4,33 +4,13 @@ import { Pagination } from "../generic";
 import { STUDENTS_PER_PAGE } from "../../constants";
 import "../../styles/AllStudentsPage.css";
 
-function AllStudentsPage() {
+function AllStudentsPage(props) {
   const [startIndex, setStartIndex] = useState(0);
 
-  const cards = [
-    <StudentCard key="1" email="sean" />,
-    <StudentCard key="2" />,
-    <StudentCard key="3" />,
-    <StudentCard key="4" />,
-    <StudentCard key="5" />,
-    <StudentCard key="6" />,
-    <StudentCard key="7" />,
-    <StudentCard key="8" />,
-    <StudentCard key="9" email="billy" />,
-    <StudentCard key="10" />,
-    <StudentCard key="11" />,
-    <StudentCard key="12" />,
-    <StudentCard key="13" />,
-    <StudentCard key="14" />,
-    <StudentCard key="15" />,
-    <StudentCard key="16" />,
-    <StudentCard key="17" email={"lucy"} />,
-    <StudentCard key="18" />,
-    <StudentCard key="19" />,
-    <StudentCard key="20" />,
-    <StudentCard key="21" />,
-    <StudentCard key="22" email={"carl"} />,
-  ];
+  const cards = props.students.map(student => <StudentCard 
+    student = {student}
+  /> )
+
 
   /* display students from different starting index based on page number */
   const displayStudentCards = cards.slice(
@@ -48,7 +28,7 @@ function AllStudentsPage() {
       <hr />
       <div className="all-student-container">{displayStudentCards}</div>
       <Pagination
-        elements={cards.length}
+        elements={props.students.length}
         perPage={STUDENTS_PER_PAGE}
         changeStartIndex={updateStartIndex}
       />
