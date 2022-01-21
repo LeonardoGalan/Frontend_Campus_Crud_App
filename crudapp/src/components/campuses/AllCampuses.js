@@ -1,15 +1,10 @@
-import React, { useState } from "react";
-import { StudentCard } from ".";
-import { Pagination } from "../generic";
-import { STUDENTS_PER_PAGE } from "../../constants";
+import React from "react";
+import { CampusCard } from ".";
+
 import "../../styles/AllStudentsPage.css";
 
 function AllCampuses(props) {
-  const [startIndex, setStartIndex] = useState(0);
-
-  const cards = props.campuses.map(campus => <CampusCard 
-    campus = {campus}
-  /> )
+  const cards = props.campuses.map((campus) => <CampusCard campus={campus} />);
 
   return (
     <>
@@ -20,4 +15,4 @@ function AllCampuses(props) {
   );
 }
 
-export default AllStudentsPage;
+export default AllCampuses;

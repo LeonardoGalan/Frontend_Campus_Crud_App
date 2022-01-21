@@ -1,7 +1,7 @@
 .all-student-header {
   margin-top: 5rem;
-  text-align: center;
   font-size: 5rem;
+  text-align: center;
 }
 
 hr {
@@ -18,32 +18,9 @@ hr {
   max-width: 70%;
 }
 
-/* pagination buttons style */
-
-.pagination-container {
-  color: rgba(161, 161, 161, 0.623);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 2rem 0 5rem;
-  font-size: 1.5rem;
+.no-students-msg {
+  margin: 4rem 0;
+  font-size: 1.4rem;
+  font-style: italic;
   text-align: center;
-}
-
-.pagination-container button {
-  color: rgba(161, 161, 161, 0.623);
-  background-color: white;
-  margin: 0 2rem;
-  padding: 0.8rem 1rem;
-  font-size: 2rem;
-  border: none;
-  cursor: pointer;
-}
-
-.pagination-container button:hover {
-
-}
-
-.pagination-container button:active {
-  border: 1px solid rgba(192, 192, 192, 0.705);
 }

@@ -1,35 +1,50 @@
-import React from "react";
-import axios from 'axios'
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { NavBar, Home } from "./components";
-import { CampusForm, Dropdown, ShowSingle, StudentForm } from "./components/generic";
-import { CampusCard, EditCampus } from "./components/campuses";
-import { AllStudentsPage } from "./components/students";
+import axios from "axios";
 import "./styles/App.css";
 
+import { NavBar, Home } from "./components";
+import { AllCampuses, CampusForm } from "./components/campuses";
+import { AllStudentsPage, StudentForm } from "./components/students";
+
 export default function App() {
-  const [students, setStudents] = React.useState([]);
-  const [campuses, setCampuses] = React.useState([]);
+  const [students, setStudents] = useState([]);
+  const [campuses, setCampuses] = useState([]);
 
-  React.useEffect(()=>{
-    setStudents(axios.get("").data)
-  }, [])
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/students/")
+      .then((results) => setStudents(results.data))
+      .catch((err) => console.log(err));
+  }, []);
 
-  React.useEffect(()=>{
-    setCampuses(axios.get("").data)
-  }, [])
-
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/campuses")
+      .then((results) => setCampuses(results.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path="/CampusCard" element={<CampusCard />} />
         <Route path="/" element={<Home />} />
-        <Route path="/Students" element={<AllStudentsPage 
-          students = {students}
-        />} />
+
+        <Route
+          path="/CampusCard"
+          element={<AllCampuses campuses={campuses} />}
+        />
+
+        <Route
+          path="/Students"
+          element={<AllStudentsPage students={students} />}
+        />
       </Routes>
+
+      {/* FORM TESTS */}
+      <CampusForm />
+      <StudentForm />
     </div>
   );
 }

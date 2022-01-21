@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import axios from "axios";
 
 function CampusCard(props) {
- 
+  function handleDelete(event) {
+    axios
+      .delete(`http://localhost:8080/campuses/College1`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }
 
   return (
     <>
       <div className="infoArea">
         <div className="campusCardImageField">
-          <img src={props.campus.imageUrl} />
+          <img src={props.campus.imageUrl} alt="campus-profile" />
         </div>
 
         <div>
@@ -16,7 +22,7 @@ function CampusCard(props) {
 
           <div className="bottom-btns">
             <p className="edit-btn">edit</p>
-            <button>delete</button>
+            <button onClick={handleDelete}>delete</button>
           </div>
         </div>
       </div>
