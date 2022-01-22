@@ -31,9 +31,40 @@
     background: #ddd;
     color: black;
   }
-/* 
-  body{
-    background-image: url("../images/homeBackground.jpeg");
+
+  .homeBack{
+    background: url('../images/homeBackground.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
-  } */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    display: grid;
+  }
+
+  .btn-holder{
+    margin: auto;
+  }
+
+  button{
+    border-radius: 10px;
+    padding: 5px;
+    font-size: larger; 
+    margin: 5px; 
+  }
+
+  .students-btn{
+    background-color: rgba(13, 235, 124, 0.5);
+  }
+
+  .campuses-btn{
+    background-color: rgba(13, 235, 124, 0.5);
+  }
+
+  button:hover{
+    border: solid 2px white;
+    width: 200px;
+  }

@@ -23,6 +23,7 @@ function AllStudentsPage(props) {
 
   const displayComponent = cards.length ? (
     <>
+      <h1>Hellow world</h1>
       <div className="all-student-container">{displayStudentCards}</div>
       <Pagination
         elements={cards.length}
