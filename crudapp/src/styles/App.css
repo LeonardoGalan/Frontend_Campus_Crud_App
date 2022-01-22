@@ -11,6 +11,12 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+hr {
+  border: 1px solid rgba(167, 167, 167, 0.431);
+  width: 130px;
+  margin: 0 auto 3rem;
+}
+
 .infoArea {
   display: flex;
   background-color: beige;

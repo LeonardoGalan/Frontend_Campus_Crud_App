@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import AddStudentButton from "./AddStudentButton";
+import StudentButton from "./StudentButton";
 import "../../styles/StudentForm.css";
 
 function StudentForm() {
@@ -54,6 +54,7 @@ function StudentForm() {
   return (
     <div className="student-form-container">
       <h2 className="student-form-header">New Student Form</h2>
+      <hr />
       <form className="student-form" onSubmit={formSubmitHandler}>
         <label>First Name</label>
         <input
@@ -64,6 +65,7 @@ function StudentForm() {
           value={inputVal.firstName}
         />
         <label>Last Name</label>
+        {/* <span>hello</span> */}
         <input
           name="lastName"
           placeholder="Student last name"
@@ -71,7 +73,6 @@ function StudentForm() {
           type="text"
           value={inputVal.lastName}
         />
-
         <label>Email</label>
         <input
           name="email"
@@ -97,7 +98,7 @@ function StudentForm() {
           value={inputVal.imageUrl}
         />
 
-        <AddStudentButton />
+        <StudentButton styleName="add-student-btn" text="Add New Student" linkTo="#" />
       </form>
     </div>
   );

@@ -5,8 +5,7 @@ import "./styles/App.css";
 
 import { NavBar, Home } from "./components";
 import { AllCampuses } from "./components/campuses";
-import { AllStudentsPage, StudentForm } from "./components/students";
-import SingleStudent from "./components/students/SingleStudent";
+import { AllStudentsPage, SingleStudent, StudentForm } from "./components/students";
 
 export default function App() {
   const [students, setStudents] = useState([]);
