@@ -36,6 +36,10 @@ export default function App() {
         <Route path="/students/:studentId" element={<SingleStudent />} />
         <Route path="/students/student-form" element={<StudentForm />} />
       </Routes>
+
+      {/* FORM TESTS */}
+      {/* {<CampusForm />} */}
+      {/* {<StudentForm />} */}
     </div>
   );
 }

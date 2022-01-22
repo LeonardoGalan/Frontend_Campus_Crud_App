@@ -1,14 +1,21 @@
 .home-btn{
     margin-right:auto;
     margin-left: 5px;
+    color: white;
 }
 .student-btn{
-    margin-left: 10px;
-    margin-right: 5px;
+    margin-left: 20px;
+    margin-right: 10px;
+    color: white;
+}
+
+.campus-btn{
+    color: white;
 }
 
 nav{
     background-color: rgba(136, 76, 76, 0.5);
     display: flex;
-    margin-bottom: 5rem;
+    padding: 8px;
+    font-size: larger;
 }
