@@ -11,21 +11,27 @@ function AllStudentsPage(props) {
     setStartIndex((prevStartIndex) => prevStartIndex + perPage);
   }
 
-  const cards = props.students.map((student) => (
-    <StudentCard student={student} />
+  // map each student to separate card
+  const studentCards = props.students.map((student) => (
+    <StudentCard
+      key={student.studentId}
+      student={student}
+      selectHandler={props.selectHandler}
+    />
   ));
 
   /* display students from different starting index based on page number */
-  const displayStudentCards = cards.slice(
+  const displayStudentstudentCards = studentCards.slice(
     startIndex < 0 ? 0 : startIndex,
-    startIndex + STUDENTS_PER_PAGE || cards.length
+    startIndex + STUDENTS_PER_PAGE || studentCards.length
   );
 
-  const displayComponent = cards.length ? (
+  /* show message to user if no students found in database */
+  const displayComponent = studentCards.length ? (
     <>
-      <div className="all-student-container">{displayStudentCards}</div>
+      <div className="all-student-container">{displayStudentstudentCards}</div>
       <Pagination
-        elements={cards.length}
+        elements={studentCards.length}
         perPage={STUDENTS_PER_PAGE}
         changeStartIndex={updateStartIndex}
       />
