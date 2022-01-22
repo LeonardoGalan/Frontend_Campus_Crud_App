@@ -1,14 +1,14 @@
 import React from "react";
-import api from "../../api";
+// import axios from "axios";
 
 function CampusCard(props) {
   /* refactor to app component */
-  function handleDelete(event) {
-    api
-      .delete(`campuses/${props.campus.name}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  }
+  // function handleDelete(event) {
+  //   axios
+  //     .delete(`http://localhost:8080/campuses/${props.campus.name}`)
+  //     .then((res) => console.log(res))
+  //     .catch((err) => console.log(err));
+  // }
 
   return (
     <>
@@ -23,7 +23,7 @@ function CampusCard(props) {
 
           <div className="bottom-btns">
             <p className="edit-btn">edit</p>
-            <button onClick={handleDelete}>delete</button>
+            {/* <button onClick={handleDelete}>delete</button> */}
           </div>
         </div>
       </div>
