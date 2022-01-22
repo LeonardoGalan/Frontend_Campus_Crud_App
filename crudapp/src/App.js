@@ -5,8 +5,7 @@ import "./styles/App.css";
 
 import { NavBar, Home } from "./components";
 import { AllCampuses } from "./components/campuses";
-import { AllStudentsPage } from "./components/students";
-import SingleStudent from "./components/students/SingleStudent";
+import { AllStudentsPage, SingleStudent, StudentForm } from "./components/students";
 
 export default function App() {
   const [students, setStudents] = useState([]);
@@ -35,6 +34,7 @@ export default function App() {
         <Route path="/CampusCard" element={<AllCampuses campuses={campuses} />} />
         <Route path="/students" element={<AllStudentsPage students={students} />} />
         <Route path="/students/:studentId" element={<SingleStudent />} />
+        <Route path="/students/student-form" element={<StudentForm />} />
       </Routes>
 
       {/* FORM TESTS */}

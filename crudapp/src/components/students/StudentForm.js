@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import StudentButton from "./StudentButton";
+import "../../styles/StudentForm.css";
 
 function StudentForm() {
   const [inputVal, setInputVal] = useState({
@@ -50,9 +52,11 @@ function StudentForm() {
   }
 
   return (
-    <>
-      <h2>Student Name</h2>
-      <form onSubmit={formSubmitHandler}>
+    <div className="student-form-container">
+      <h2 className="student-form-header">New Student Form</h2>
+      <hr />
+      <form className="student-form" onSubmit={formSubmitHandler}>
+        <label>First Name</label>
         <input
           name="firstName"
           placeholder="Student first name"
@@ -60,6 +64,8 @@ function StudentForm() {
           type="text"
           value={inputVal.firstName}
         />
+        <label>Last Name</label>
+        {/* <span>hello</span> */}
         <input
           name="lastName"
           placeholder="Student last name"
@@ -67,13 +73,7 @@ function StudentForm() {
           type="text"
           value={inputVal.lastName}
         />
-        <input
-          name="gpa"
-          placeholder="Student GPA"
-          onChange={setVal}
-          type="number"
-          value={inputVal.gpa}
-        />
+        <label>Email</label>
         <input
           name="email"
           placeholder="Add Student Email"
@@ -81,6 +81,15 @@ function StudentForm() {
           type="text"
           value={inputVal.email}
         />
+        <label>GPA</label>
+        <input
+          name="gpa"
+          placeholder="Student GPA"
+          onChange={setVal}
+          type="number"
+          value={inputVal.gpa}
+        />
+        <label>Photo</label>
         <input
           name="imageUrl"
           placeholder="Add Student Image"
@@ -89,9 +98,9 @@ function StudentForm() {
           value={inputVal.imageUrl}
         />
 
-        <button>Add Student</button>
+        <StudentButton styleName="add-student-btn" text="Add New Student" linkTo="#" />
       </form>
-    </>
+    </div>
   );
 }
 

@@ -13,8 +13,8 @@ function StudentCard(props) {
         />
         <h2 className="student-name">{`${props.student.firstName} ${props.student.lastName}`}</h2>
         <h3 className="student-campus-name">Campus Name</h3>
-        <p className="student-email">{props.student.email}</p>
-        <p className="student-gpa">{props.student.gpa}</p>
+        <p className="student-email">Email: {props.student.email}</p>
+        <p className="student-gpa">GPA: {props.student.gpa}</p>
       </div>
     </Link>
   );

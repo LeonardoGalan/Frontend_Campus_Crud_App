@@ -4,46 +4,59 @@
   padding: 0;
 }
 
-.infoArea{
+/* remove step arrows in input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+hr {
+  border: 1px solid rgba(167, 167, 167, 0.431);
+  width: 130px;
+  margin: 0 auto 3rem;
+}
+
+.infoArea {
   display: flex;
   background-color: beige;
 }
 
-.campusCardImageField{
+.campusCardImageField {
   padding: 10px;
 }
 
-.campusCardImageField img{
+.campusCardImageField img {
   width: 400px;
   height: 250px;
 }
 
-.campusName{
+.campusName {
   text-decoration: underline;
 }
 
-.infoArea button{
+.infoArea button {
   background-color: rgb(209, 96, 96);
 }
 
-.bottom-btns{
+.bottom-btns {
   display: flex;
   position: relative;
   top: 60%;
 }
 
-.edit-btn{
+.edit-btn {
   text-decoration: underline;
   color: #61dafb;
   margin-right: auto;
   padding: 4px;
 }
 
-.bottom-btns button{
+.bottom-btns button {
   width: 50px;
   height: 30px;
 }
 
-.home-btn{
+.home-btn {
   margin-right: auto;
 }

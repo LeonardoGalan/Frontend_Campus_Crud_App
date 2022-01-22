@@ -1,9 +1,17 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
+import StudentButton from "./StudentButton";
+import "../../styles/SingleStudent.css";
 
 function SingleStudent(props) {
-  const [selectedStudent, setSelectedStudent] = useState({});
+  const [selectedStudent, setSelectedStudent] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    gpa: "",
+    imageUrl: "",
+  });
   const { studentId } = useParams();
 
   useEffect(() => {
@@ -19,12 +27,18 @@ function SingleStudent(props) {
 
   return (
     <div className="single-student-container">
-      <img className="profile-img" src={selectedStudent.imageUrl} alt="profile" />
-      <h2>{`${selectedStudent.firstName} ${selectedStudent.lastName}`}</h2>
-      <p>{selectedStudent.gpa}</p>
-      <p>{selectedStudent.email}</p>
-      <button>Edit</button>
-      <button>Delete</button>
+      <img
+        className="single-student-image"
+        src={selectedStudent.imageUrl}
+        alt="profile"
+      />
+      <div className="single-student-info">
+        <h2 className="single-student-name">{`${selectedStudent.firstName} ${selectedStudent.lastName}`}</h2>
+        <p className="single-student-email">{selectedStudent.email}</p>
+        <p className="single-student-gpa">GPA: {selectedStudent.gpa}</p>
+        <StudentButton styleName="edit-student-btn" text="Edit" linkTo="#" />
+        <StudentButton styleName="delete-student-btn" text="Delete" linkTo="#" />
+      </div>
     </div>
   );
 }

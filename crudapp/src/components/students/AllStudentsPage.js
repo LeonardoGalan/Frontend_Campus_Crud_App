@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { StudentCard } from ".";
-import { Pagination } from "../generic";
 import { STUDENTS_PER_PAGE } from "../../constants";
+import { Pagination } from "../generic";
+import { StudentCard } from ".";
+import StudentButton from "./StudentButton";
 import "../../styles/AllStudentsPage.css";
 
 function AllStudentsPage(props) {
@@ -21,7 +22,7 @@ function AllStudentsPage(props) {
   ));
 
   /* display students from different starting index based on page number */
-  const displayStudentstudentCards = studentCards.slice(
+  const displayStudentCards = studentCards.slice(
     startIndex < 0 ? 0 : startIndex,
     startIndex + STUDENTS_PER_PAGE || studentCards.length
   );
@@ -29,7 +30,7 @@ function AllStudentsPage(props) {
   /* show message to user if no students found in database */
   const displayComponent = studentCards.length ? (
     <>
-      <div className="all-student-container">{displayStudentstudentCards}</div>
+      <div className="all-student-container">{displayStudentCards}</div>
       <Pagination
         elements={studentCards.length}
         perPage={STUDENTS_PER_PAGE}
@@ -41,11 +42,16 @@ function AllStudentsPage(props) {
   );
 
   return (
-    <>
+    <div className="all-students-container">
       <h2 className="all-student-header">Students</h2>
       <hr />
+      <StudentButton
+        styleName="add-student-btn"
+        text="Add New Student"
+        linkTo="student-form"
+      />
       {displayComponent}
-    </>
+    </div>
   );
 }
 
