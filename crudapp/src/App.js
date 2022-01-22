@@ -5,11 +5,17 @@ import "./styles/App.css";
 
 import { NavBar, Home } from "./components";
 import { AllCampuses } from "./components/campuses";
-import { AllStudentsPage, SingleStudent, StudentForm } from "./components/students";
+import {
+  AllStudentsPage,
+  SingleStudent,
+  StudentForm,
+  EditStudentForm,
+} from "./components/students";
 
 export default function App() {
   const [students, setStudents] = useState([]);
   const [campuses, setCampuses] = useState([]);
+  const [selectedStudent, setSelectedStudent] = useState({});
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -26,20 +32,30 @@ export default function App() {
     fetchCampuses();
   }, []);
 
+  function clickSelectedStudent(id) {
+    const selected = students.find((student) => student.studentId === id);
+    setSelectedStudent(selected);
+  }
+
   return (
     <div className="App">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/CampusCard" element={<AllCampuses campuses={campuses} />} />
-        <Route path="/students" element={<AllStudentsPage students={students} />} />
-        <Route path="/students/:studentId" element={<SingleStudent />} />
+        <Route
+          path="/students"
+          element={
+            <AllStudentsPage students={students} selectHandler={clickSelectedStudent} />
+          }
+        />
         <Route path="/students/student-form" element={<StudentForm />} />
+        <Route path="/students/:studentId" element={<SingleStudent selectHandler={clickSelectedStudent}/>} />
+        <Route
+          path="/students/:studentId/edit-student"
+          element={<EditStudentForm student={selectedStudent} />}
+        />
       </Routes>
-
-      {/* FORM TESTS */}
-      {/* {<CampusForm />} */}
-      {/* {<StudentForm />} */}
     </div>
   );
 }

@@ -4,7 +4,9 @@ import "../../styles/StudentCard.css";
 
 function StudentCard(props) {
   return (
-    <Link to={`${props.student.studentId}`}>
+    <Link
+      to={`${props.student.studentId}`}
+      onClick={() => props.selectHandler(props.student.studentId)}>
       <div className="student-card">
         <img
           className="student-img"

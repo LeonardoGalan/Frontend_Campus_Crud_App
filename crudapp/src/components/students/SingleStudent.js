@@ -5,15 +5,10 @@ import StudentButton from "./StudentButton";
 import "../../styles/SingleStudent.css";
 
 function SingleStudent(props) {
-  const [selectedStudent, setSelectedStudent] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    gpa: "",
-    imageUrl: "",
-  });
-  const { studentId } = useParams();
+  const { studentId } = useParams(); // get the student id passed in from the URL
 
+  // I'm doing this because without it, refreshing the browser would break the page otherwise
+  const [selectedStudent, setSelectedStudent] = useState({});
   useEffect(() => {
     const fetchSingleStudent = async () => {
       axios
@@ -21,7 +16,6 @@ function SingleStudent(props) {
         .then((res) => setSelectedStudent(res.data))
         .catch((err) => console.log(err));
     };
-
     fetchSingleStudent();
   }, []);
 
@@ -36,7 +30,12 @@ function SingleStudent(props) {
         <h2 className="single-student-name">{`${selectedStudent.firstName} ${selectedStudent.lastName}`}</h2>
         <p className="single-student-email">{selectedStudent.email}</p>
         <p className="single-student-gpa">GPA: {selectedStudent.gpa}</p>
-        <StudentButton styleName="edit-student-btn" text="Edit" linkTo="#" />
+        <StudentButton
+          styleName="edit-student-btn"
+          text="Edit"
+          linkTo={`edit-student`}
+          onClick={() => props.selectHandler(studentId)}
+        />
         <StudentButton styleName="delete-student-btn" text="Delete" linkTo="#" />
       </div>
     </div>

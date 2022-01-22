@@ -4,8 +4,8 @@ import "../../styles/StudentButton.css";
 
 function StudentButton(props) {
   return (
-    <Link className={props.styleName} to={props.linkTo}>
-      {props.text}
+    <Link to={props.linkTo}>
+      <button className={props.styleName}>{props.text}</button>
     </Link>
   );
 }
