@@ -8,6 +8,7 @@
 }
 
 nav{
-    display: flex;
     background-color: rgba(136, 76, 76, 0.5);
+    display: flex;
+    margin-bottom: 5rem;
 }

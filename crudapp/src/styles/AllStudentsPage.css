@@ -1,20 +1,22 @@
-.all-student-header {
-  margin-top: 5rem;
-  font-size: 5rem;
+.all-students-container {
   text-align: center;
+}
+
+.all-student-header {
+  font-size: 5rem;
 }
 
 hr {
   border: 1px solid rgba(167, 167, 167, 0.431);
   width: 130px;
-  margin: 0 auto;
+  margin: 0 auto 3rem;
 }
 
 .all-student-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 1rem auto 0;
+  margin: 3rem auto 0;
   max-width: 70%;
 }
 
@@ -22,5 +24,4 @@ hr {
   margin: 4rem 0;
   font-size: 1.4rem;
   font-style: italic;
-  text-align: center;
 }

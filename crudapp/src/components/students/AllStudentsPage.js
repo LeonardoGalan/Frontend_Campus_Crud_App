@@ -3,6 +3,7 @@ import { StudentCard } from ".";
 import { Pagination } from "../generic";
 import { STUDENTS_PER_PAGE } from "../../constants";
 import "../../styles/AllStudentsPage.css";
+import AddStudentButton from "./AddStudentButton";
 
 function AllStudentsPage(props) {
   const [startIndex, setStartIndex] = useState(0);
@@ -41,11 +42,12 @@ function AllStudentsPage(props) {
   );
 
   return (
-    <>
+    <div className="all-students-container">
       <h2 className="all-student-header">Students</h2>
       <hr />
+      <AddStudentButton />
       {displayComponent}
-    </>
+    </div>
   );
 }
 

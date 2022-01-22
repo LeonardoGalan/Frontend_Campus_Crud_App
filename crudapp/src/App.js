@@ -5,7 +5,7 @@ import "./styles/App.css";
 
 import { NavBar, Home } from "./components";
 import { AllCampuses } from "./components/campuses";
-import { AllStudentsPage } from "./components/students";
+import { AllStudentsPage, StudentForm } from "./components/students";
 import SingleStudent from "./components/students/SingleStudent";
 
 export default function App() {
@@ -35,6 +35,7 @@ export default function App() {
         <Route path="/CampusCard" element={<AllCampuses campuses={campuses} />} />
         <Route path="/students" element={<AllStudentsPage students={students} />} />
         <Route path="/students/:studentId" element={<SingleStudent />} />
+        <Route path="/students/student-form" element={<StudentForm />} />
       </Routes>
     </div>
   );
