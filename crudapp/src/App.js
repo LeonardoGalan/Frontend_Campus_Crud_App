@@ -10,6 +10,7 @@ import {
   SingleStudent,
   StudentForm,
   EditStudentForm,
+  StudentRow,
 } from "./components/students";
 
 export default function App() {
@@ -80,6 +81,7 @@ export default function App() {
           element={<EditStudentForm student={selectedStudent} />}
         />
       </Routes>
+      <StudentRow />
     </div>
   );
 }

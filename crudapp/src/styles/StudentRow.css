@@ -1,0 +1,23 @@
+.student-row {
+  background-color: rgb(196, 217, 231);
+  display: flex;
+  align-items: center;
+  margin: 2rem auto;
+  min-width: 400px;
+  max-width: 40%;
+}
+
+.student-row-image {
+  padding: 0.6rem;
+  max-width: 30%;
+}
+
+.student-row-name {
+  margin-right: auto;
+}
+
+.remove-student-campus-btn {
+  align-self: flex-end;
+  font-size: 0.8rem;
+  margin: 1rem;
+}
