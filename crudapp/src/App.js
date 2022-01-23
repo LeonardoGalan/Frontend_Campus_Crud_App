@@ -71,6 +71,7 @@ export default function App() {
             <SingleStudent
               selectHandler={clickSelectedStudent}
               deleteHandler={deleteSelectedStudent}
+              allCampuses={campuses}
             />
           }
         />

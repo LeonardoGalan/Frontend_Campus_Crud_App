@@ -5,4 +5,12 @@ export const EMPTY_STUDENT = {
   gpa: "",
   imageUrl: "",
   email: "",
+  campusName: "",
+};
+
+export const EMPTY_CAMPUS = {
+  name: "",
+  address: "",
+  description: "",
+  imageUrl: "",
 };
