@@ -26,6 +26,7 @@ function StudentForm() {
       email: event.target[2].value,
       gpa: event.target[3].value,
       imageUrl: event.target[4].value,
+      campusName: event.target[5].value,
     };
 
     axios
@@ -45,7 +46,7 @@ function StudentForm() {
         <label>First Name</label>
         <input
           name="firstName"
-          placeholder="Student first name"
+          placeholder="First Name..."
           onChange={setVal}
           type="text"
           value={inputVal.firstName}
@@ -53,7 +54,7 @@ function StudentForm() {
         <label>Last Name</label>
         <input
           name="lastName"
-          placeholder="Student last name"
+          placeholder="Last Name..."
           onChange={setVal}
           type="text"
           value={inputVal.lastName}
@@ -61,7 +62,7 @@ function StudentForm() {
         <label>Email</label>
         <input
           name="email"
-          placeholder="Add Student Email"
+          placeholder="Student Email..."
           onChange={setVal}
           type="text"
           value={inputVal.email}
@@ -69,7 +70,7 @@ function StudentForm() {
         <label>GPA</label>
         <input
           name="gpa"
-          placeholder="Student GPA"
+          placeholder="Student gpa..."
           onChange={setVal}
           type="number"
           value={inputVal.gpa}
@@ -77,13 +78,21 @@ function StudentForm() {
         <label>Photo</label>
         <input
           name="imageUrl"
-          placeholder="Add Student Image"
+          placeholder="Student image..."
           onChange={setVal}
           type="text"
           value={inputVal.imageUrl}
         />
+        <label>Register Campus</label>
+        <input
+          name="campusName"
+          placeholder="Campus name..."
+          onChange={setVal}
+          type="text"
+          value={inputVal.campusName}
+        />
 
-        <button className="add-student-btn link-buttons">Add Student</button>
+        <button className="add-student-btn link-buttons">Register Student</button>
       </form>
     </div>
   );

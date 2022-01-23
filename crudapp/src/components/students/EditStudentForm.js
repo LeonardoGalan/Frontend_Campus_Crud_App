@@ -63,6 +63,8 @@ function EditStudentForm(props) {
         <input name="gpa" onChange={setVal} type="number" value={inputVal.gpa} />
         <label>Photo</label>
         <input name="imageUrl" onChange={setVal} type="text" value={inputVal.imageUrl} />
+        <label>Campus</label>
+        <input name="campusName" onChange={setVal} type="text" value={inputVal.campusName} />
         <button className="edit-student-btn link-buttons">Edit</button>
       </form>
     </div>
