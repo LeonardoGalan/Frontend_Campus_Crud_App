@@ -2,13 +2,6 @@
 
 .add-student-btn {
   background-color: rgb(251, 165, 115);
-  color: white;
-  padding: 1rem 1rem;
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-weight: bold;
-  border-radius: 8px;
-  box-shadow: 1px 1px 3px 1px rgba(143, 143, 143, 0.555);
 }
 
 .add-student-btn:active {
@@ -19,13 +12,6 @@
 
 .edit-student-btn {
   background-color: rgb(49, 200, 62);
-  color: white;
-  padding: 0.5rem 1.5rem;
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-weight: bold;
-  border-radius: 8px;
-  box-shadow: 1px 1px 3px 1px rgba(143, 143, 143, 0.555);
 }
 
 .edit-student-btn:active {
@@ -36,16 +22,20 @@
 
 .delete-student-btn {
   background-color: rgb(251, 115, 115);
-  color: white;
   margin-left: 1rem;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-weight: bold;
-  border-radius: 8px;
-  box-shadow: 1px 1px 3px 1px rgba(143, 143, 143, 0.555);
 }
 
 .delete-student-btn:active {
   background-color: rgb(223, 97, 97);
+}
+
+.link-buttons {
+  color: white;
+  padding: 0.7rem 1.5rem;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 1px 1px 3px 1px rgba(143, 143, 143, 0.555);
 }

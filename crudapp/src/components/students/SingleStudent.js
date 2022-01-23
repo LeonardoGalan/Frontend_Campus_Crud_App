@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import StudentButton from "./StudentButton";
 import "../../styles/SingleStudent.css";
 
 function SingleStudent(props) {
+  const navigate = useNavigate();
   const { studentId } = useParams(); // get the student id passed in from the URL
 
   // I'm doing this because without it, refreshing the browser would break the page otherwise
@@ -36,7 +37,11 @@ function SingleStudent(props) {
           linkTo={`edit-student`}
           onClick={() => props.selectHandler(studentId)}
         />
-        <StudentButton styleName="delete-student-btn" text="Delete" linkTo="#" />
+        <button
+          className="delete-student-btn link-buttons"
+          onClick={() => props.deleteHandler(studentId, selectedStudent)}>
+          Delete
+        </button>
       </div>
     </div>
   );

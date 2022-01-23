@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { EMPTY_STUDENT } from "../../constants";
 import { useParams, useNavigate } from "react-router-dom";
-import StudentButton from "./StudentButton";
 
 function EditStudentForm(props) {
-  const [inputVal, setInputVal] = useState({
-    firstName: "",
-    lastName: "",
-    gpa: "",
-    imageUrl: "",
-    email: "",
-  });
+  const [inputVal, setInputVal] = useState(EMPTY_STUDENT);
 
   const { studentId } = useParams();
   const navigate = useNavigate();
@@ -35,7 +29,18 @@ function EditStudentForm(props) {
 
   function formSubmitHandler(event) {
     event.preventDefault();
-    navigate(-1)
+    const dispatch = async () => {
+      try {
+        const newStudent = { ...inputVal };
+        console.log(newStudent);
+        await axios.put(`http://localhost:8080/students/${studentId}`, newStudent);
+        navigate(`../students/${studentId}`);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    dispatch();
   }
 
   return (
@@ -58,7 +63,7 @@ function EditStudentForm(props) {
         <input name="gpa" onChange={setVal} type="number" value={inputVal.gpa} />
         <label>Photo</label>
         <input name="imageUrl" onChange={setVal} type="text" value={inputVal.imageUrl} />
-        <button className="edit-student-btn">Edit Student</button>
+        <button className="edit-student-btn link-buttons">Edit</button>
       </form>
     </div>
   );

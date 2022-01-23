@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { EMPTY_STUDENT } from "../../constants";
 import StudentButton from "./StudentButton";
 import "../../styles/StudentForm.css";
 
 function StudentForm() {
-  const [inputVal, setInputVal] = useState({
-    firstName: "",
-    lastName: "",
-    gpa: "",
-    imageUrl: "",
-    email: "",
-  });
+  const [inputVal, setInputVal] = useState(EMPTY_STUDENT);
 
   function setVal(event) {
     console.log(inputVal);
@@ -26,29 +21,20 @@ function StudentForm() {
 
     // collect Form data into new student object
     const newStudent = {
-      studentId: 20,
       firstName: event.target[0].value,
       lastName: event.target[1].value,
-      gpa: Number(event.target[2].value),
-      email: event.target[3].value,
+      email: event.target[2].value,
+      gpa: event.target[3].value,
       imageUrl: event.target[4].value,
     };
 
-    // POST request to backend server
-    /* TODO refactor */
-    // axios
-    //   .post(`http://localhost:8080/students/`, newStudent)
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err));
+    axios
+      .post(`http://localhost:8080/students/`, newStudent)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
 
     // clear input fields
-    setInputVal({
-      firstName: "",
-      lastName: "",
-      gpa: "",
-      imageUrl: "",
-      email: "",
-    });
+    setInputVal(EMPTY_STUDENT);
   }
 
   return (
@@ -65,7 +51,6 @@ function StudentForm() {
           value={inputVal.firstName}
         />
         <label>Last Name</label>
-        {/* <span>hello</span> */}
         <input
           name="lastName"
           placeholder="Student last name"
@@ -98,7 +83,7 @@ function StudentForm() {
           value={inputVal.imageUrl}
         />
 
-        <StudentButton styleName="add-student-btn" text="Add New Student" linkTo="#" />
+        <button className="add-student-btn link-buttons">Add Student</button>
       </form>
     </div>
   );

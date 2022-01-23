@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./styles/App.css";
 
@@ -13,6 +13,7 @@ import {
 } from "./components/students";
 
 export default function App() {
+  const navigate = useNavigate;
   const [students, setStudents] = useState([]);
   const [campuses, setCampuses] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState({});
@@ -37,12 +38,26 @@ export default function App() {
     setSelectedStudent(selected);
   }
 
+  function deleteSelectedStudent(studentId, studentToDelete) {
+    const updatedStudents = students.filter((student) => student.studentId !== studentId);
+    setStudents(updatedStudents);
+
+    const deleteStudent = async () => {
+      await axios.delete(`http://localhost:8080/students/${studentId}`, studentToDelete);
+    };
+
+    deleteStudent();
+  }
+
   return (
     <div className="App">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* Campus routes */}
         <Route path="/CampusCard" element={<AllCampuses campuses={campuses} />} />
+
+        {/* Student Routes */}
         <Route
           path="/students"
           element={
@@ -50,7 +65,15 @@ export default function App() {
           }
         />
         <Route path="/students/student-form" element={<StudentForm />} />
-        <Route path="/students/:studentId" element={<SingleStudent selectHandler={clickSelectedStudent}/>} />
+        <Route
+          path="/students/:studentId"
+          element={
+            <SingleStudent
+              selectHandler={clickSelectedStudent}
+              deleteHandler={deleteSelectedStudent}
+            />
+          }
+        />
         <Route
           path="/students/:studentId/edit-student"
           element={<EditStudentForm student={selectedStudent} />}
