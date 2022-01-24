@@ -1,11 +1,14 @@
-.heading{
-    font-size: 5rem;
-    text-align: center;
+.all-campus-container {
+  text-align: center;
 }
 
-.campusCards{
-    display: grid;
-    justify-content: center;
-    margin-top: 20px;
+.campus-heading {
+  font-size: 5rem;
+}
 
+.campus-cards {
+  display: grid;
+  grid-template: 250px / 500px 500px;
+  justify-content: center;
+  margin: 4rem auto 2rem;
 }

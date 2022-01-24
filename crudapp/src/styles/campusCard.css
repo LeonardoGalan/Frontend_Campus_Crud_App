@@ -1,51 +1,27 @@
-.infoArea {
-    display: flex;
-    margin: 10px;
-  }
-  
-  .campusCardImageField {
-    padding: 10px;
-  }
-  
-  .campusCardImageField img {
-    width: 400px;
-    height: 250px;
-  }
-  
-  .campusName {
-    text-decoration: underline;
-    margin-top: 5px;
-  }
-  
-  .infoArea button {
-    background-color: rgb(209, 96, 96);
-  }
-  
-  .bottom-btns {
-    display: flex;
-    position: relative;
-    top: 65%;
-  }
-  
-  .edit-btn {
-    text-decoration: underline;
-    color: #61dafb;
-    padding: 4px;
-  }
-  
-  .bottom-btns button {
-    position: relative;
-    bottom: 10px;
-    margin-left: 60px;
-    border-radius: 1px;
-    
-  }
-  
-  .home-btn {
-    margin-right: auto;
-  }
+.campus-card-container {
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  max-width: 450px;
+  margin: 1rem auto;
+  box-shadow: 2px 2px 8px 2px rgba(155, 155, 155, 0.644);
+  border-radius: 10px;
+}
 
-  .right-side{
-      margin-left: 5px;
-  }
-  
+.campus-card-img {
+  padding: 0.4rem 0.6rem;
+  max-width: 50%;
+}
+
+.campus-card-info {
+  padding-left: 0.6rem;
+}
+
+.campus-card-name {
+  margin-bottom: 8.5rem;
+}
+
+.campus-card-delete-btn {
+  align-self: flex-end;
+  margin: 1rem 0.5rem;
+}

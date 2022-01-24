@@ -4,8 +4,13 @@ import axios from "axios";
 import "./styles/App.css";
 
 import { NavBar, Home } from "./components";
-import { AllCampuses, CampusForm, EditCampus } from "./components/campuses";
-import { AllStudentsPage, SingleStudent, AddStudentForm, EditStudentForm } from "./components/students";
+import { AllCampuses, CampusForm, EditCampus, SingleCampus } from "./components/campuses";
+import {
+  AllStudentsPage,
+  SingleStudent,
+  AddStudentForm,
+  EditStudentForm,
+} from "./components/students";
 
 export default function App() {
   const [students, setStudents] = useState([]);
@@ -46,14 +51,26 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {/* Campus routes */}
-        <Route path="/CampusCard" element={<AllCampuses campuses={campuses} />} />
-        <Route path="/CampusCard/campus-form" element={<CampusForm />} />
-        <Route path="/EditCampus" element={<EditCampus />} />
-        
+        <Route path="/campuses" element={<AllCampuses campuses={campuses} />} />
+        <Route path="/campuses/:campusName" element={<SingleCampus campuses={campuses} />} />
+        <Route path="/campuses/campus-form" element={<CampusForm />} />
+        <Route path="/campuses/edit-campus" element={<EditCampus />} />
+
         {/* Student Routes */}
-        <Route path="/students" element={<AllStudentsPage allStudents={students} retrieveHandler={retrieveUpdatedStudents} />} />
-        <Route path="/students/student-form" element={<AddStudentForm addStudentHandler={addNewStudent} campuses={campuses}/>} />
-        <Route path="/students/:studentId" element={<SingleStudent deleteHandler={deleteSelectedStudent} allCampuses={campuses} />} />
+        <Route
+          path="/students"
+          element={
+            <AllStudentsPage allStudents={students} retrieveHandler={retrieveUpdatedStudents} />
+          }
+        />
+        <Route
+          path="/students/student-form"
+          element={<AddStudentForm addStudentHandler={addNewStudent} campuses={campuses} />}
+        />
+        <Route
+          path="/students/:studentId"
+          element={<SingleStudent deleteHandler={deleteSelectedStudent} allCampuses={campuses} />}
+        />
         <Route path="/students/:studentId/edit-student" element={<EditStudentForm />} />
       </Routes>
     </div>

@@ -8,10 +8,10 @@ function NavBar() {
       <Link className="nav-home-btn" to="/">
         Home
       </Link>
-      <Link className="campus-btn" to="/CampusCard">
+      <Link className="campus-btn" to="/campuses">
         Campuses
       </Link>
-      <Link className="student-btn" to="/Students">
+      <Link className="student-btn" to="/students">
         Students
       </Link>
     </nav>
