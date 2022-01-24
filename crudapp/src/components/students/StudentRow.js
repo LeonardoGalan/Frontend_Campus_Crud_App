@@ -1,8 +1,9 @@
 import React from "react";
-import "../../styles/StudentRow.css";
 import axios from "axios";
+import "../../styles/StudentRow.css";
 
 function StudentRow(props) {
+  // remove student button handler
   function removeFromCampus() {
     const updateStudent = { ...props.student, campusName: "" };
     axios
@@ -13,11 +14,7 @@ function StudentRow(props) {
 
   return (
     <div className="student-row">
-      <img
-        className="student-row-image"
-        src="https://www.civhc.org/wp-content/uploads/2018/10/question-mark.png"
-        alt="student"
-      />
+      <img className="student-row-image" src={props.student.imageUrl} alt="student" />
       <h2 className="student-row-name">{props.student.name}</h2>
       <button
         className="remove-student-campus-btn delete-student-btn link-buttons"

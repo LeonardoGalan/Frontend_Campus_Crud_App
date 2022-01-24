@@ -2,16 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import "./styles/App.css";
-import { nanoid } from "nanoid";
 
 import { NavBar, Home } from "./components";
 import { AllCampuses } from "./components/campuses";
-import { AllStudentsPage, SingleStudent, StudentForm, EditStudentForm } from "./components/students";
+import { AllStudentsPage, SingleStudent, AddStudentForm, EditStudentForm } from "./components/students";
 
 export default function App() {
   const [students, setStudents] = useState([]);
   const [campuses, setCampuses] = useState([]);
-  const [selectedStudent, setSelectedStudent] = useState({});
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -28,12 +26,7 @@ export default function App() {
     fetchCampuses();
   }, []);
 
-  /* Student handlers */
-  function clickSelectedStudent(id) {
-    const selected = students.find((student) => student.studentId === id);
-    setSelectedStudent(selected);
-  }
-
+  /* student handlers */
   function deleteSelectedStudent(studentId) {
     const updatedStudents = students.filter((student) => student.studentId !== studentId);
     setStudents(updatedStudents);
@@ -56,10 +49,10 @@ export default function App() {
         <Route path="/CampusCard" element={<AllCampuses campuses={campuses} />} />
 
         {/* Student Routes */}
-        <Route path="/students" element={<AllStudentsPage students={students} selectHandler={clickSelectedStudent} retrieveHandler={retrieveUpdatedStudents} />} />
-        <Route path="/students/student-form" element={<StudentForm addStudentHandler={addNewStudent} />} />
-        <Route path="/students/:studentId" element={<SingleStudent selectHandler={clickSelectedStudent} deleteHandler={deleteSelectedStudent} allCampuses={campuses} />} />
-        <Route path="/students/:studentId/edit-student" element={<EditStudentForm student={selectedStudent} />} />
+        <Route path="/students" element={<AllStudentsPage allStudents={students} retrieveHandler={retrieveUpdatedStudents} />} />
+        <Route path="/students/student-form" element={<AddStudentForm addStudentHandler={addNewStudent} />} />
+        <Route path="/students/:studentId" element={<SingleStudent deleteHandler={deleteSelectedStudent} allCampuses={campuses} />} />
+        <Route path="/students/:studentId/edit-student" element={<EditStudentForm />} />
       </Routes>
     </div>
   );

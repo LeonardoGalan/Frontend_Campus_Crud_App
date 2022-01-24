@@ -12,6 +12,7 @@ function SingleStudent(props) {
   const [selectedStudent, setSelectedStudent] = useState(EMPTY_STUDENT);
   const [selectedStudentCampus, setSelectedStudentCampus] = useState(null);
   const [dropdownValue, setDropdownValue] = useState("");
+
   // I'm doing this because without it, refreshing the browser would break the page otherwise
   useEffect(() => {
     const fetchSingleStudent = () => {
@@ -79,8 +80,12 @@ function SingleStudent(props) {
           <h2 className="single-student-name">{`${selectedStudent.firstName} ${selectedStudent.lastName}`}</h2>
           <p className="single-student-email">{selectedStudent.email}</p>
           <p className="single-student-gpa">GPA: {selectedStudent.gpa}</p>
-          <StudentButton styleName="edit-student-btn" text="Edit" linkTo={`edit-student`} onClick={() => props.selectHandler(studentId)} />
-          <StudentButton styleName="delete-student-btn link-buttons" clickHandler={deleteStudent} text="Delete" linkTo="../students"></StudentButton>
+          <StudentButton styleName="edit-student-btn" text="Edit" linkTo={`edit-student`} />
+          <StudentButton
+            styleName="delete-student-btn "
+            clickHandler={deleteStudent}
+            text="Delete"
+            linkTo="../students"></StudentButton>
         </div>
       </div>
 

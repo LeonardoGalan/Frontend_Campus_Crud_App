@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { EMPTY_STUDENT } from "../../constants";
 import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function EditStudentForm(props) {
+import { EMPTY_STUDENT } from "../../constants";
+import { StudentForm } from ".";
+
+function EditStudentForm() {
   const [inputVal, setInputVal] = useState(EMPTY_STUDENT);
-
   const { studentId } = useParams();
   const navigate = useNavigate();
 
@@ -21,53 +22,33 @@ function EditStudentForm(props) {
   }, []);
 
   function setVal(event) {
-    setInputVal((prev) => ({
-      ...prev,
+    setInputVal((prevValues) => ({
+      ...prevValues,
       [event.target.name]: event.target.value,
     }));
   }
 
   function formSubmitHandler(event) {
     event.preventDefault();
-    const dispatch = async () => {
-      try {
-        const newStudent = { ...inputVal };
-        console.log(newStudent);
-        await axios.put(`http://localhost:8080/students/${studentId}`, newStudent);
-        navigate(`../students/${studentId}`);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    const newStudent = { ...inputVal };
+    axios
+      .put(`http://localhost:8080/students/${studentId}`, newStudent)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
 
-    dispatch();
+    // redirect to student page after registering
+    navigate(`../students/${studentId}`);
   }
 
   return (
-    <div className="student-form-container">
-      <h2 className="student-form-header">Edit Profile</h2>
-      <hr />
-      <form className="student-form" onSubmit={formSubmitHandler}>
-        <label>First Name</label>
-        <input
-          name="firstName"
-          onChange={setVal}
-          type="text"
-          value={inputVal.firstName}
-        />
-        <label>Last Name</label>
-        <input name="lastName" onChange={setVal} type="text" value={inputVal.lastName} />
-        <label>Email</label>
-        <input name="email" onChange={setVal} type="text" value={inputVal.email} />
-        <label>GPA</label>
-        <input name="gpa" onChange={setVal} type="number" value={inputVal.gpa} />
-        <label>Photo</label>
-        <input name="imageUrl" onChange={setVal} type="text" value={inputVal.imageUrl} />
-        <label>Campus</label>
-        <input name="campusName" onChange={setVal} type="text" value={inputVal.campusName} />
-        <button className="edit-student-btn link-buttons">Edit</button>
-      </form>
-    </div>
+    <StudentForm
+      header="Edit Profile"
+      changeHandler={setVal}
+      formValues={inputVal}
+      formHandler={formSubmitHandler}
+      buttonText="Edit"
+      buttonClass="edit"
+    />
   );
 }
 
