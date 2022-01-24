@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { EMPTY_STUDENT } from "../../constants";
-import StudentButton from "./StudentButton";
 import "../../styles/StudentForm.css";
 
-function StudentForm() {
+function StudentForm(props) {
   const [inputVal, setInputVal] = useState(EMPTY_STUDENT);
 
+  // input handler
   function setVal(event) {
-    console.log(inputVal);
     setInputVal((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
@@ -17,9 +16,7 @@ function StudentForm() {
 
   function formSubmitHandler(event) {
     event.preventDefault();
-    console.log(event.target[0]);
 
-    // collect Form data into new student object
     const newStudent = {
       firstName: event.target[0].value,
       lastName: event.target[1].value,
@@ -28,6 +25,8 @@ function StudentForm() {
       imageUrl: event.target[4].value,
       campusName: event.target[5].value,
     };
+
+    props.addStudentHandler(newStudent);
 
     axios
       .post(`http://localhost:8080/students/`, newStudent)
@@ -44,53 +43,17 @@ function StudentForm() {
       <hr />
       <form className="student-form" onSubmit={formSubmitHandler}>
         <label>First Name</label>
-        <input
-          name="firstName"
-          placeholder="First Name..."
-          onChange={setVal}
-          type="text"
-          value={inputVal.firstName}
-        />
+        <input name="firstName" placeholder="First Name..." onChange={setVal} type="text" value={inputVal.firstName} />
         <label>Last Name</label>
-        <input
-          name="lastName"
-          placeholder="Last Name..."
-          onChange={setVal}
-          type="text"
-          value={inputVal.lastName}
-        />
+        <input name="lastName" placeholder="Last Name..." onChange={setVal} type="text" value={inputVal.lastName} />
         <label>Email</label>
-        <input
-          name="email"
-          placeholder="Student Email..."
-          onChange={setVal}
-          type="text"
-          value={inputVal.email}
-        />
+        <input name="email" placeholder="Student Email..." onChange={setVal} type="text" value={inputVal.email} />
         <label>GPA</label>
-        <input
-          name="gpa"
-          placeholder="Student gpa..."
-          onChange={setVal}
-          type="number"
-          value={inputVal.gpa}
-        />
+        <input name="gpa" placeholder="Student gpa..." onChange={setVal} type="number" value={inputVal.gpa} />
         <label>Photo</label>
-        <input
-          name="imageUrl"
-          placeholder="Student image..."
-          onChange={setVal}
-          type="text"
-          value={inputVal.imageUrl}
-        />
+        <input name="imageUrl" placeholder="Student image..." onChange={setVal} type="text" value={inputVal.imageUrl} />
         <label>Register Campus</label>
-        <input
-          name="campusName"
-          placeholder="Campus name..."
-          onChange={setVal}
-          type="text"
-          value={inputVal.campusName}
-        />
+        <input name="campusName" placeholder="Campus name..." onChange={setVal} type="text" value={inputVal.campusName} />
 
         <button className="add-student-btn link-buttons">Register Student</button>
       </form>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import { EMPTY_STUDENT, EMPTY_CAMPUS } from "../../constants";
+import { EMPTY_STUDENT } from "../../constants";
 import { CampusCard } from "../campuses";
 import StudentButton from "./StudentButton";
 import "../../styles/SingleStudent.css";
@@ -12,7 +12,6 @@ function SingleStudent(props) {
   const [selectedStudent, setSelectedStudent] = useState(EMPTY_STUDENT);
   const [selectedStudentCampus, setSelectedStudentCampus] = useState(null);
   const [dropdownValue, setDropdownValue] = useState("");
-
   // I'm doing this because without it, refreshing the browser would break the page otherwise
   useEffect(() => {
     const fetchSingleStudent = () => {
@@ -58,6 +57,13 @@ function SingleStudent(props) {
     }
   }
 
+  function deleteStudent() {
+    axios
+      .delete(`http://localhost:8080/students/${studentId}`, selectedStudent)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }
+
   // campus dropdown options
   const campuses = props.allCampuses.map((campus) => (
     <option key={campus.campusId} value={campus.name}>
@@ -67,32 +73,17 @@ function SingleStudent(props) {
 
   return (
     <>
-      {/* Single Student Info Section */}
       <div className="single-student-container">
-        <img
-          className="single-student-image"
-          src={selectedStudent.imageUrl}
-          alt="profile"
-        />
+        <img className="single-student-image" src={selectedStudent.imageUrl} alt="profile" />
         <div className="single-student-info">
           <h2 className="single-student-name">{`${selectedStudent.firstName} ${selectedStudent.lastName}`}</h2>
           <p className="single-student-email">{selectedStudent.email}</p>
           <p className="single-student-gpa">GPA: {selectedStudent.gpa}</p>
-          <StudentButton
-            styleName="edit-student-btn"
-            text="Edit"
-            linkTo={`edit-student`}
-            onClick={() => props.selectHandler(studentId)}
-          />
-          <button
-            className="delete-student-btn link-buttons"
-            onClick={() => props.deleteHandler(studentId, selectedStudent)}>
-            Delete
-          </button>
+          <StudentButton styleName="edit-student-btn" text="Edit" linkTo={`edit-student`} onClick={() => props.selectHandler(studentId)} />
+          <StudentButton styleName="delete-student-btn link-buttons" clickHandler={deleteStudent} text="Delete" linkTo="../students"></StudentButton>
         </div>
       </div>
 
-      {/* Single Student Campus Section*/}
       <div className="show-student-campus">
         {selectedStudentCampus ? (
           <>
