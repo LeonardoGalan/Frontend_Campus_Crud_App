@@ -31,6 +31,11 @@ export default function App() {
     fetchCampuses();
   }, []);
 
+  /* campus handlers */
+  function retrieveUpdatedCampuses(updatedCampuses) {
+    setStudents(updatedCampuses);
+  }
+
   /* student handlers */
   function deleteSelectedStudent(studentId) {
     const updatedStudents = students.filter((student) => student.studentId !== studentId);
@@ -51,10 +56,13 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {/* Campus routes */}
-        <Route path="/campuses" element={<AllCampuses campuses={campuses} />} />
+        <Route
+          path="/campuses"
+          element={<AllCampuses campuses={campuses} retrieveHandler={retrieveUpdatedCampuses} />}
+        />
         <Route path="/campuses/:campusName" element={<SingleCampus campuses={campuses} />} />
         <Route path="/campuses/campus-form" element={<CampusForm />} />
-        <Route path="/campuses/edit-campus" element={<EditCampus />} />
+        <Route path="/campuses/:campusName/edit-campus" element={<EditCampus />} />
 
         {/* Student Routes */}
         <Route

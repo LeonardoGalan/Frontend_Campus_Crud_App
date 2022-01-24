@@ -1,19 +1,131 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { EMPTY_CAMPUS } from "../../constants";
+import { StudentRow } from "../students";
+
 import "../../styles/editCampus.css";
 
-function EditCampus() {
+function EditCampus(props) {
+  const [inputVal, setInputVal] = useState(EMPTY_CAMPUS);
+  const [studentsOnCampus, setStudentsOnCampus] = useState([]);
+  const { campusName } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchSingleStudent = async () => {
+      axios
+        .get(`http://localhost:8080/campuses/${campusName}`)
+        .then((res) => setInputVal(res.data))
+        .catch((err) => console.log(err));
+    };
+
+    fetchSingleStudent();
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/campuses/${campusName}/students`)
+      .then((res) => setStudentsOnCampus(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  function setVal(event) {
+    console.log(inputVal);
+    setInputVal((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  }
+
+  function formSubmitHandler(event) {
+    event.preventDefault();
+    const updatedCampus = { ...inputVal };
+    axios
+      .put(`http://localhost:8080/campuses/${campusName}`, updatedCampus)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+
+    // redirect to campus page after registering
+    navigate(`../campuses/${campusName}`);
+  }
+
+  const campusStudents = studentsOnCampus.map((student) => (
+    <option key={student.studentId} value={student.studentId}>
+      {student.firstName} {student.lastName}
+    </option>
+  ));
+
+  const studentRows = studentsOnCampus.map((student) => (
+    <StudentRow key={student.studentId} student={student} />
+  ));
+
+  function doNothing() {
+    console.log("hi");
+  }
+
   return (
-    <div className="editCampusForm">
-      <h2 className="editheader">Edit Campus Info</h2>
-      <hr />
-      <form className="editForm">
-        <input placeholder="Campus Name" />
-        <input placeholder="Campus Location"></input>
-        <input placeholder="Campus Image Url"></input>
-        <textarea placeholder="Campus Description"></textarea>
-        <button>Save Changes</button>
-      </form>
-    </div>
+    <>
+      <div className="student-form-container">
+        <h2 className="student-form-header">Edit Campus Form</h2>
+        <hr />
+
+        <form className="student-form" onSubmit={formSubmitHandler}>
+          <label>College Name</label>
+          <input
+            name="name"
+            placeholder="Add Campus Name"
+            onChange={(event) => setVal(event)}
+            type="text"
+            value={inputVal.name}
+          />
+          <label>Campus Location</label>
+          <input
+            name="address"
+            placeholder="Add Campus Location"
+            onChange={(event) => setVal(event)}
+            type="text"
+            value={inputVal.address}
+          />
+          <label>Campus Image</label>
+          <input
+            name="imageUrl"
+            placeholder="Add Campus image url"
+            onChange={(event) => setVal(event)}
+            type="text"
+            value={inputVal.imageUrl}
+          />
+          <label>Description</label>
+          <textarea
+            name="description"
+            placeholder="Add Campus Description"
+            onChange={(event) => setVal(event)}
+            type="text"
+            value={inputVal.description}
+          />
+          <button className="edit-student-btn link-buttons">Save Changes</button>
+        </form>
+      </div>
+
+      <div className="show-student-campus">
+        <h1>Students On Campus</h1>
+
+        <select className="campus-select" onChange={doNothing}>
+          <option value="">Select Student...</option>
+          {campusStudents}
+        </select>
+        <button className="edit-student-btn link-buttons" onClick={doNothing}>
+          Add to Campus
+        </button>
+        {studentsOnCampus.length ? (
+          <>
+            <>{studentRows}</>
+          </>
+        ) : (
+          <h3>Campus has no registered Students</h3>
+        )}
+      </div>
+    </>
   );
 }
 

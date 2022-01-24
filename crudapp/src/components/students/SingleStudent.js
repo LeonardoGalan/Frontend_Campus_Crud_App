@@ -82,7 +82,7 @@ function SingleStudent(props) {
           <p className="single-student-gpa">GPA: {selectedStudent.gpa}</p>
           <StudentButton styleName="edit-student-btn" text="Edit" linkTo={`edit-student`} />
           <StudentButton
-            styleName="delete-student-btn "
+            styleName="delete-student-btn link-buttons"
             clickHandler={deleteStudent}
             text="Delete"
             linkTo="../students"></StudentButton>

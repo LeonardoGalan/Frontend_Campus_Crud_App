@@ -9,7 +9,6 @@ function CampusForm() {
   const [inputVal, setInputVal] = useState(EMPTY_CAMPUS);
 
   function setVal(event) {
-    console.log(inputVal);
     setInputVal((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
@@ -22,16 +21,18 @@ function CampusForm() {
     // collect Form data into new Campus object
     const newCampus = {
       name: event.target[0].value,
-      imageUrl: event.target[1].value,
-      description: event.target[2].value,
+      address: event.target[1].value,
+      imageUrl: event.target[2].value,
+      description: event.target[3].value,
     };
 
     axios
-      .post("localhostUrl", newCampus)
+      .post("http://localhost:8080/campuses", newCampus)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
-      // navigate to campus page
+    // navigate to campus page
+    navigate("/campuses");
   }
 
   return (
@@ -41,13 +42,21 @@ function CampusForm() {
         <hr />
 
         <form className="student-form" onSubmit={formSubmitHandler}>
-          <label>College Name</label>
+          <label>Campus Name</label>
           <input
             name="name"
             placeholder="Add Campus Name"
             onChange={(event) => setVal(event)}
             type="text"
             value={inputVal.name}
+          />
+          <label>Address</label>
+          <input
+            name="address"
+            placeholder="Add Campus location"
+            onChange={(event) => setVal(event)}
+            type="text"
+            value={inputVal.address}
           />
           <label>Campus Image</label>
           <input

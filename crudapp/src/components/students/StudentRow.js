@@ -15,7 +15,7 @@ function StudentRow(props) {
   return (
     <div className="student-row">
       <img className="student-row-image" src={props.student.imageUrl} alt="student" />
-      <h2 className="student-row-name">{props.student.name}</h2>
+      <h2 className="student-row-name">{`${props.student.firstName} ${props.student.lastName}`}</h2>
       <button
         className="remove-student-campus-btn delete-student-btn link-buttons"
         onClick={removeFromCampus}>
