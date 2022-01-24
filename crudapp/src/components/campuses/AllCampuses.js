@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CampusCard } from ".";
+import CampusButton from "./CampusButton";
 
-import "../../styles/AllStudentsPage.css";
+import "../../styles/AllCampuses.css";
+import axios from "axios";
 
 function AllCampuses(props) {
-  const cards = props.campuses.map((campus) => <CampusCard campus={campus} />);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/campuses/")
+      .then((res) => props.retrieveHandler(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  const cards = props.campuses.map((campus) => (
+    <CampusCard key={campus.campusId} campus={campus} />
+  ));
 
   return (
-    <>
-      <h2 className="all-student-header">Campuses</h2>
+    <div className="all-campus-container">
+      <h2 className="campus-heading">All Campuses</h2>
       <hr />
-      {cards}
-    </>
+      <CampusButton
+        styleName="add-student-btn link-buttons"
+        text="Add New Campus"
+        linkTo="campus-form"
+      />
+      <div className="campus-cards">{cards}</div>
+    </div>
   );
 }
 

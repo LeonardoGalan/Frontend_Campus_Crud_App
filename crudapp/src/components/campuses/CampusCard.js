@@ -1,33 +1,17 @@
 import React from "react";
-// import axios from "axios";
+import { Link } from "react-router-dom";
+import "../../styles/campusCard.css";
 
 function CampusCard(props) {
-  /* refactor to app component */
-  // function handleDelete(event) {
-  //   axios
-  //     .delete(`http://localhost:8080/campuses/${props.campus.name}`)
-  //     .then((res) => console.log(res))
-  //     .catch((err) => console.log(err));
-  // }
-
   return (
-    <>
-      <div className="infoArea">
-        <div className="campusCardImageField">
-          <img src={props.campus.imageUrl} alt="campus-profile" />
-        </div>
-
-        <div>
-          <h1 className="campusName">{props.campus.name}</h1>
-          <p>{} Students</p>
-
-          <div className="bottom-btns">
-            <p className="edit-btn">edit</p>
-            {/* <button onClick={handleDelete}>delete</button> */}
-          </div>
+    <Link to={`../campuses/${props.campus.name}`}>
+      <div className="campus-card-container">
+        <img className="campus-card-img" src={props.campus.imageUrl} alt="campus-profile" />
+        <div className="campus-card-info">
+          <h1 className="campus-card-name">{props.campus.name}</h1>
         </div>
       </div>
-    </>
+    </Link>
   );
 }
 

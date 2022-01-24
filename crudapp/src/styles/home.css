@@ -1,70 +1,29 @@
-/* Style the video: 100% width and height to cover the entire window */
-#myVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-  }
-  
-  /* Add some content at the bottom of the video/page */
-  .content {
-    
-    background: rgba(136, 76, 76, 0.5);
-    color: #f1f1f1;
-    width: 100%;
-    padding: 20px;
-  }
-  
-  /* Style the button used to pause/play the video */
-  #myBtn {
-    width: 200px;
-    font-size: 18px;
-    padding: 10px;
-    border: none;
-    background: #000;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  #myBtn:hover {
-    background: #ddd;
-    color: black;
-  }
+.homeBack {
+  background: url("../images/homeBackground.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  display: grid;
+}
 
-  .homeBack{
-    background: url('../images/homeBackground.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    top: 0;
-    z-index: -1;
-    display: grid;
-  }
+.btn-holder {
+  margin: auto;
+}
 
-  .btn-holder{
-    margin: auto;
-  }
+.home-btn {
+  background-color: rgba(13, 235, 124, 0.5);
+  border-radius: 10px;
+  padding: 5px;
+  font-size: larger;
+  margin: 5px;
+}
 
-  button{
-    border-radius: 10px;
-    padding: 5px;
-    font-size: larger; 
-    margin: 5px; 
-  }
-
-  .students-btn{
-    background-color: rgba(13, 235, 124, 0.5);
-  }
-
-  .campuses-btn{
-    background-color: rgba(13, 235, 124, 0.5);
-  }
-
-  button:hover{
-    border: solid 2px white;
-    width: 200px;
-  }
+.home-btn:hover {
+  border: solid 2px white;
+  width: 200px;
+}
