@@ -3,55 +3,59 @@ import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import "./styles/App.css";
 
-//temporary
-import dummyStudents from './components/dumbStudents'
-import dumbCampuses from './components/dumbCampuses'
-
 import { NavBar, Home } from "./components";
 import { AllCampuses, CampusForm, EditCampus } from "./components/campuses";
-import { AllStudentsPage, SingleStudent, StudentForm } from "./components/students";
-import dumbStudents from "./components/dumbStudents";
+import { AllStudentsPage, SingleStudent, AddStudentForm, EditStudentForm } from "./components/students";
 
 export default function App() {
-  const students = dumbStudents;
-  const campuses = dumbCampuses;
+  const [students, setStudents] = useState([]);
+  const [campuses, setCampuses] = useState([]);
 
-  console.log(students)
+  useEffect(() => {
+    const fetchStudents = async () => {
+      const students = await axios.get("http://localhost:8080/students/");
+      setStudents(students.data);
+    };
 
-  // const [students, setStudents] = useState([]);
-  // const [campuses, setCampuses] = useState([]);
+    const fetchCampuses = async () => {
+      const campuses = await axios.get("http://localhost:8080/campuses/");
+      setCampuses(campuses.data);
+    };
 
-  // useEffect(() => {
-  //   const fetchStudents = async () => {
-  //     const students = await axios.get("http://localhost:8080/students/");
-  //     setStudents(students.data);
-  //   };
+    fetchStudents();
+    fetchCampuses();
+  }, []);
 
-  //   const fetchCampuses = async () => {
-  //     const campuses = await axios.get("http://localhost:8080/campuses/");
-  //     setCampuses(campuses.data);
-  //   };
+  /* student handlers */
+  function deleteSelectedStudent(studentId) {
+    const updatedStudents = students.filter((student) => student.studentId !== studentId);
+    setStudents(updatedStudents);
+  }
 
-  //   fetchStudents();
-  //   fetchCampuses();
-  // }, []);
+  function retrieveUpdatedStudents(updatedStudents) {
+    setStudents(updatedStudents);
+  }
+
+  function addNewStudent(newStudent) {
+    setStudents((prevStudents) => [...prevStudents, newStudent]);
+  }
 
   return (
     <div className="App">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* Campus routes */}
         <Route path="/CampusCard" element={<AllCampuses campuses={campuses} />} />
-        <Route path="/students" element={<AllStudentsPage students={students} />} />
-        <Route path="/students/:studentId" element={<SingleStudent />} />
-        <Route path="/students/student-form" element={<StudentForm />} />
         <Route path="/CampusCard/campus-form" element={<CampusForm />} />
         <Route path="/EditCampus" element={<EditCampus />} />
+        
+        {/* Student Routes */}
+        <Route path="/students" element={<AllStudentsPage allStudents={students} retrieveHandler={retrieveUpdatedStudents} />} />
+        <Route path="/students/student-form" element={<AddStudentForm addStudentHandler={addNewStudent} campuses={campuses}/>} />
+        <Route path="/students/:studentId" element={<SingleStudent deleteHandler={deleteSelectedStudent} allCampuses={campuses} />} />
+        <Route path="/students/:studentId/edit-student" element={<EditStudentForm />} />
       </Routes>
-
-      {/* FORM TESTS */}
-      {/* {<CampusForm />} */}
-      {/* {<StudentForm />} */}
     </div>
   );
 }

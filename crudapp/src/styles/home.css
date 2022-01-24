@@ -1,39 +1,29 @@
-  .homeBack{
-    background: url('../images/homeBackground.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    top: 0;
-    z-index: -1;
-    display: grid;
-  }
+.homeBack {
+  background: url("../images/homeBackground.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  display: grid;
+}
 
-  .btn-holder{
-    margin: auto;
-  }
+.btn-holder {
+  margin: auto;
+}
 
-  button{
-    border-radius: 10px;
-    padding: 5px;
-    font-size: larger; 
-    margin: 5px; 
-  }
+.home-btn {
+  background-color: rgba(13, 235, 124, 0.5);
+  border-radius: 10px;
+  padding: 5px;
+  font-size: larger;
+  margin: 5px;
+}
 
-  .students-btn{
-    background-color: rgba(13, 235, 124, 0.5);
-    color: white;
-  }
-
-  .campuses-btn{
-    background-color: rgba(13, 235, 124, 0.5);
-    color: white;
-  }
-
-  
- .btn-holder button:hover{
-    border: solid 2px white;
-    width: 200px;
-  }
+.home-btn:hover {
+  border: solid 2px white;
+  width: 200px;
+}

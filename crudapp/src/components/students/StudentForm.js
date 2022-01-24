@@ -1,107 +1,97 @@
-import React, { useState } from "react";
-import axios from "axios";
-import StudentButton from "./StudentButton";
+import React from "react";
 import "../../styles/StudentForm.css";
 
-function StudentForm() {
-  const [inputVal, setInputVal] = useState({
-    firstName: "",
-    lastName: "",
-    gpa: "",
-    imageUrl: "",
-    email: "",
-  });
-
-  function setVal(event) {
-    console.log(inputVal);
-    setInputVal((prev) => ({
-      ...prev,
-      [event.target.name]: event.target.value,
-    }));
-  }
-
-  function formSubmitHandler(event) {
-    event.preventDefault();
-    console.log(event.target[0]);
-
-    // collect Form data into new student object
-    const newStudent = {
-      studentId: 20,
-      firstName: event.target[0].value,
-      lastName: event.target[1].value,
-      gpa: Number(event.target[2].value),
-      email: event.target[3].value,
-      imageUrl: event.target[4].value,
-    };
-
-    // POST request to backend server
-    /* TODO refactor */
-    // axios
-    //   .post(`http://localhost:8080/students/`, newStudent)
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err));
-
-    // clear input fields
-    setInputVal({
-      firstName: "",
-      lastName: "",
-      gpa: "",
-      imageUrl: "",
-      email: "",
-    });
-  }
-
+function Form(props) {
   return (
     <div className="student-form-container">
-      <h2 className="student-form-header">New Student Form</h2>
+      <h2 className="student-form-header">{props.header}</h2>
       <hr />
-      <form className="student-form" onSubmit={formSubmitHandler}>
-        <label>First Name</label>
+      <form className="student-form" onSubmit={props.formHandler}>
+        <label htmlFor="form-first-name">
+          First Name
+          {/* {props.errors.firstName && (
+            <span className="error-message">{props.errors.firstName}</span>
+          )} */}
+        </label>
         <input
           name="firstName"
-          placeholder="Student first name"
-          onChange={setVal}
+          onChange={props.changeHandler}
           type="text"
-          value={inputVal.firstName}
-        />
-        <label>Last Name</label>
-        {/* <span>hello</span> */}
-        <input
-          name="lastName"
-          placeholder="Student last name"
-          onChange={setVal}
-          type="text"
-          value={inputVal.lastName}
-        />
-        <label>Email</label>
-        <input
-          name="email"
-          placeholder="Add Student Email"
-          onChange={setVal}
-          type="text"
-          value={inputVal.email}
-        />
-        <label>GPA</label>
-        <input
-          name="gpa"
-          placeholder="Student GPA"
-          onChange={setVal}
-          type="number"
-          value={inputVal.gpa}
-        />
-        <label>Photo</label>
-        <input
-          name="imageUrl"
-          placeholder="Add Student Image"
-          onChange={setVal}
-          type="text"
-          value={inputVal.imageUrl}
+          value={props.formValues.firstName}
+          id="form-first-name"
         />
 
-        <StudentButton styleName="add-student-btn" text="Add New Student" linkTo="#" />
+        <label htmlFor="form-last-name">
+          Last Name
+          {/* {props.errors.lastName && <span className="error-message">{props.errors.lastName}</span>} */}
+        </label>
+        <input
+          name="lastName"
+          onChange={props.changeHandler}
+          type="text"
+          value={props.formValues.lastName}
+          id="form-last-name"
+        />
+
+        <label htmlFor="form-email">
+          Email
+          {/* {props.errors.email && <span className="error-message">{props.errors.email}</span>} */}
+        </label>
+        <input
+          name="email"
+          onChange={props.changeHandler}
+          type="text"
+          value={props.formValues.email}
+          id="form-email"
+        />
+
+        <label htmlFor="form-gpa">
+          GPA
+          {/* {props.errors.gpa && <span className="error-message">{props.errors.gpa}</span>} */}
+        </label>
+        <input
+          name="gpa"
+          onChange={props.changeHandler}
+          type="number"
+          min="0"
+          max="4"
+          step="0.01"
+          value={props.formValues.gpa}
+          id="form-gpa"
+        />
+
+        <label htmlFor="form-imageUrl">
+          Photo
+          {/* {props.errors.imageUrl && <span className="error-message">{props.errors.imageUrl}</span>} */}
+        </label>
+        <input
+          name="imageUrl"
+          onChange={props.changeHandler}
+          type="text"
+          value={props.formValues.imageUrl}
+          id="form-imageUrl"
+        />
+
+        <label htmlFor="form-campusName">
+          Campus
+          {/* {props.errors.campusName && (
+            <span className="error-message">{props.errors.campusName}</span>
+          )} */}
+        </label>
+        <input
+          name="campusName"
+          onChange={props.changeHandler}
+          type="text"
+          value={props.formValues.campusName}
+          id="form-campusName"
+        />
+
+        <button className={`${props.buttonClass}-student-btn link-buttons`}>
+          {props.buttonText}
+        </button>
       </form>
     </div>
   );
 }
 
-export default StudentForm;
+export default Form;
