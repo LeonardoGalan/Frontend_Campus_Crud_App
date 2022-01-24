@@ -20,11 +20,7 @@ function AllStudentsPage(props) {
     setStartIndex((prevStartIndex) => prevStartIndex + perPage);
   }
 
-  function displayPage() {
-    if (props.allStudents.length === 0) {
-      return <p className="no-students-msg">No Students to Display</p>;
-    }
-
+  function displayCards() {
     const studentCards = props.allStudents.map((student) => (
       <StudentCard key={student.studentId} student={student} />
     ));
@@ -47,12 +43,19 @@ function AllStudentsPage(props) {
     );
   }
 
+  const displayPage =
+    props.allStudents.length === 0 ? (
+      <p className="no-students-msg">No Students to Display</p>
+    ) : (
+      displayCards()
+    );
+
   return (
     <div className="all-students-container">
       <h2 className="all-student-header">Students</h2>
       <hr />
       <StudentButton styleName="add-student-btn" text="Add New Student" linkTo="student-form" />
-      {displayPage()}
+      {displayPage}
     </div>
   );
 }

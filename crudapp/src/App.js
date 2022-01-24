@@ -50,7 +50,7 @@ export default function App() {
 
         {/* Student Routes */}
         <Route path="/students" element={<AllStudentsPage allStudents={students} retrieveHandler={retrieveUpdatedStudents} />} />
-        <Route path="/students/student-form" element={<AddStudentForm addStudentHandler={addNewStudent} />} />
+        <Route path="/students/student-form" element={<AddStudentForm addStudentHandler={addNewStudent} campuses={campuses}/>} />
         <Route path="/students/:studentId" element={<SingleStudent deleteHandler={deleteSelectedStudent} allCampuses={campuses} />} />
         <Route path="/students/:studentId/edit-student" element={<EditStudentForm />} />
       </Routes>

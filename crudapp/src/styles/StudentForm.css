@@ -28,3 +28,9 @@
   border: 1px solid rgba(209, 209, 209, 0.788);
 }
 
+.error-message {
+  color: red;
+  align-self: flex-start;
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+}

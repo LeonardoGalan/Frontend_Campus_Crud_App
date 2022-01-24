@@ -7,8 +7,64 @@ import { StudentForm } from ".";
 
 function AddStudentForm(props) {
   const [inputVal, setInputVal] = useState(EMPTY_STUDENT);
+  // const [formErrors, setFormErrors] = useState(EMPTY_STUDENT);
+
   const navigate = useNavigate();
   const newStudentId = nanoid();
+
+  /* form validation */
+  // function formValidation(event) {
+  //   const errors = {};
+  //   let isValidForm = true;
+
+  //   if (event.target.name === "firstName") {
+  //     if (!event.target.value) {
+  //       isValidForm = false;
+  //       errors["firstName"] = "*Required";
+  //     }
+  //   }
+
+  //   if (event.target.name === "lastName") {
+  //     if (!event.target.value) {
+  //       isValidForm = false;
+  //       errors["lastName"] = "*Required";
+  //     }
+  //   }
+
+  //   if (event.target.name === "email") {
+  //     if (!event.target.value) {
+  //       isValidForm = false;
+  //       errors["email"] = "*Required";
+  //     }
+  //   }
+
+  //   if (event.target.name === "email") {
+  //     if (
+  //       event.target.value.lastIndexOf("@") === -1 ||
+  //       event.target.value.lastIndexOf(".") === -1
+  //     ) {
+  //       isValidForm = false;
+  //       errors["email"] = "*Required - valid email";
+  //     }
+  //   }
+
+  //   if (event.target.name === "gpa") {
+  //     if (!event.target.value) {
+  //       isValidForm = false;
+  //       errors["gpa"] = "*Required";
+  //     }
+  //   }
+
+  //   if (event.target.name === "campusName") {
+  //     if (!event.target.value) {
+  //       isValidForm = false;
+  //       errors["campusName"] = "*Required";
+  //     }
+  //   }
+
+  //   setFormErrors(errors);
+  //   return isValidForm;
+  // }
 
   function setVal(event) {
     setInputVal((prevValues) => ({
