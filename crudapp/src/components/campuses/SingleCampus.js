@@ -6,7 +6,7 @@ import { StudentCard } from "../students";
 import StudentButton from "../students/StudentButton";
 import "../../styles/SingleCampus.css";
 
-function SingleCampus(props) {
+function SingleCampus() {
   const [selectedCampus, setSelectedCampus] = useState(EMPTY_CAMPUS);
   const [campusStudents, setCampusStudents] = useState([]);
   const { campusName } = useParams();
@@ -53,7 +53,15 @@ function SingleCampus(props) {
       </div>
 
       <h2 className="student-list-header">Students On Campus</h2>
-      <div className="student-list-container">{studentCards}</div>
+      <div className="student-list-container">
+        {studentCards.length ? (
+          <>{studentCards}</>
+        ) : (
+          <p className="no-students-registered-msg">
+            There are no students currently registered to this campus
+          </p>
+        )}
+      </div>
     </>
   );
 }

@@ -11,6 +11,10 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+body {
+  background-color: rgba(250, 247, 243, 0.541);
+}
+
 hr {
   border: 1px solid rgba(167, 167, 167, 0.431);
   width: 130px;

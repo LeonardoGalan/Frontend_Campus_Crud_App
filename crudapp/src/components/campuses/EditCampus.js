@@ -133,11 +133,9 @@ function EditCampus(props) {
           Add to Campus
         </button>
         {studentsOnCampus.length ? (
-          <>
-            <>{studentRows}</>
-          </>
+          <>{studentRows}</>
         ) : (
-          <h3>Campus has no registered Students</h3>
+          <h3>There are currently no students registered to this Campus</h3>
         )}
       </div>
     </>

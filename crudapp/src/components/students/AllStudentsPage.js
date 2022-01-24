@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { nanoid } from "nanoid";
 import { STUDENTS_PER_PAGE } from "../../constants";
 import { Pagination } from "../generic";
 import { StudentCard } from ".";
@@ -21,8 +22,18 @@ function AllStudentsPage(props) {
   }
 
   function displayCards() {
-    const studentCards = props.allStudents.map((student) => (
-      <StudentCard key={student.studentId} student={student} />
+    const sortedStudents = [...props.allStudents].sort(function (a, b) {
+      if (a.lastName < b.lastName) {
+        return -1;
+      }
+      if (a.lastName > b.lastName) {
+        return 1;
+      }
+      return 0;
+    });
+
+    const studentCards = sortedStudents.map((student) => (
+      <StudentCard key={nanoid()} student={student} />
     ));
 
     /* display students from different starting index based on page number */

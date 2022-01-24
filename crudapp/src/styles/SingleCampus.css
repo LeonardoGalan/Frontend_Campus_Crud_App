@@ -9,3 +9,7 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.no-students-registered-msg {
+  font-size: 1.5rem;
+}

@@ -5,7 +5,7 @@ import "../../styles/StudentRow.css";
 function StudentRow(props) {
   // remove student button handler
   function removeFromCampus() {
-    const updateStudent = { ...props.student, campusName: "" };
+    const updateStudent = { ...props.student, campusName: null };
     axios
       .put(`http://localhost:8080/students/${props.student.studentId}`, updateStudent)
       .then((res) => console.log(res))
