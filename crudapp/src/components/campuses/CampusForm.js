@@ -1,4 +1,7 @@
+import axios from 'axios';
 import React, { useState } from 'react'
+import "../../styles/StudentForm.css";
+import CampusButton from './CampusButton';
 
 function CampusForm(){
     const [inputVal, setInputVal] = useState({
@@ -16,16 +19,37 @@ function CampusForm(){
         }))
     }
 
+    function formSubmitHandler(event) {
+        event.preventDefault();
+    
+        // collect Form data into new Campus object
+        const newCampus = {
+          name: event.target[0].value,
+          imageUrl: event.target[1].value,
+          description: event.target[2].value
+        };
+
+        // axios.post("localhostUrl", newCampus)
+        // .then(res=> console.log(res))
+
+    }
+
     return(
         <>
-        <form>
-            <h2>Campus Name</h2>
-            <input name="name" placeholder='Add Campus Name' onChange={(event)=> setVal(event)} type="text" value={inputVal.name}/>
-            <input name="img" placeholder='Add Campus image url' onChange={(event)=> setVal(event)} type="text" value={inputVal.img}/>
-            <input name="address" placeholder='Add Campus Address' onChange={(event)=> setVal(event)} type="text" value={inputVal.address}/>
-            <input name='description' placeholder='Add Campus Description' onChange={(event)=> setVal(event)} type="text" value={inputVal.description}/>
-            <button>Add Campus</button>
-        </form>
+            <div className="student-form-container">
+                <h2 className="student-form-header">New Campus Form</h2>
+                <hr />
+      
+                <form className="student-form" onSubmit={formSubmitHandler}>
+                    <label>College Name</label>
+                    <input name="name" placeholder='Add Campus Name' onChange={(event)=> setVal(event)} type="text" value={inputVal.name}/>
+                    <label>Campus Image</label>
+                    <input name="img" placeholder='Add Campus image url' onChange={(event)=> setVal(event)} type="text" value={inputVal.img}/>
+                    <label>Description</label>
+                    <textarea name='description' placeholder='Add Campus Description' onChange={(event)=> setVal(event)} type="text" value={inputVal.description}/>
+                    <CampusButton styleName="add-student-btn" text="Add New Campus" linkTo="#" />
+                </form>
+            </div>
         </>
     )
 }

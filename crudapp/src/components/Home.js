@@ -9,8 +9,8 @@ function Home() {
                 <source src="rain.mp4" type="video/mp4"/>
             </video> */}
       <div className="btn-holder" >
-     <button className="students-btn">Students</button> 
-      <button className="campuses-btn">Campuses</button>
+     <button className="students-btn"><Link to="/students">Students</Link></button> 
+      <button className="campuses-btn"><Link to="/students">Campuses</Link></button>
       </div>
 
       {/* { <button id="myBtn" onclick="myFunction()">Pause</button>} */}

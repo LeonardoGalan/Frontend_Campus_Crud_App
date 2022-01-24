@@ -1,0 +1,51 @@
+.infoArea {
+    display: flex;
+    margin: 10px;
+  }
+  
+  .campusCardImageField {
+    padding: 10px;
+  }
+  
+  .campusCardImageField img {
+    width: 400px;
+    height: 250px;
+  }
+  
+  .campusName {
+    text-decoration: underline;
+    margin-top: 5px;
+  }
+  
+  .infoArea button {
+    background-color: rgb(209, 96, 96);
+  }
+  
+  .bottom-btns {
+    display: flex;
+    position: relative;
+    top: 65%;
+  }
+  
+  .edit-btn {
+    text-decoration: underline;
+    color: #61dafb;
+    padding: 4px;
+  }
+  
+  .bottom-btns button {
+    position: relative;
+    bottom: 10px;
+    margin-left: 60px;
+    border-radius: 1px;
+    
+  }
+  
+  .home-btn {
+    margin-right: auto;
+  }
+
+  .right-side{
+      margin-left: 5px;
+  }
+  

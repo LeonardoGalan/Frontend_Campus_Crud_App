@@ -1,16 +1,25 @@
 import React from "react";
 import { CampusCard } from ".";
+import CampusButton from "./CampusButton";
 
-import "../../styles/AllStudentsPage.css";
+import "../../styles/AllCampuses.css";
 
 function AllCampuses(props) {
   const cards = props.campuses.map((campus) => <CampusCard campus={campus} />);
 
   return (
     <>
-      <h2 className="all-student-header">Campuses</h2>
+      <h2 className="heading">All Campuses</h2>
       <hr />
-      {cards}
+      <center><CampusButton
+        styleName="add-student-btn"
+        text="Add New Campus"
+        linkTo="campus-form"
+      /></center>
+
+      <div >
+      <div className="campusCards">{cards}</div>
+      </div>
     </>
   );
 }

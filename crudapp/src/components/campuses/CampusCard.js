@@ -1,4 +1,6 @@
 import React from "react";
+import "../../styles/campusCard.css";
+import { Link } from "react-router-dom"
 // import axios from "axios";
 
 function CampusCard(props) {
@@ -11,23 +13,26 @@ function CampusCard(props) {
   // }
 
   return (
-    <>
+    <Link to="/CampusCard">
       <div className="infoArea">
         <div className="campusCardImageField">
           <img src={props.campus.imageUrl} alt="campus-profile" />
+          <p>{props.campus.address}</p>
         </div>
 
-        <div>
+        <div className="right-side" >
           <h1 className="campusName">{props.campus.name}</h1>
-          <p>{} Students</p>
 
           <div className="bottom-btns">
-            <p className="edit-btn">edit</p>
-            {/* <button onClick={handleDelete}>delete</button> */}
+
+            <Link className="edit-btn" to="/EditCampus">edit</Link>
+            {/* <button {onClick={handleDelete}}>delete</button>  */}
+            <button>delete</button>  
           </div>
+
         </div>
       </div>
-    </>
+    </Link>
   );
 }
 

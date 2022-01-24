@@ -1,0 +1,11 @@
+.heading{
+    font-size: 5rem;
+    text-align: center;
+}
+
+.campusCards{
+    display: grid;
+    justify-content: center;
+    margin-top: 20px;
+
+}
