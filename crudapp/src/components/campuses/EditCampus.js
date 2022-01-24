@@ -9,6 +9,8 @@ import "../../styles/editCampus.css";
 function EditCampus(props) {
   const [inputVal, setInputVal] = useState(EMPTY_CAMPUS);
   const [studentsOnCampus, setStudentsOnCampus] = useState([]);
+  const [dropdownValue, setDropdownValue] = useState("");
+
   const { campusName } = useParams();
   const navigate = useNavigate();
 
@@ -50,7 +52,24 @@ function EditCampus(props) {
     navigate(`../campuses/${campusName}`);
   }
 
-  const campusStudents = studentsOnCampus.map((student) => (
+  function optionHandler(event) {
+    if (event.target.value) {
+      setDropdownValue(event.target.value);
+    }
+  }
+
+  function addStudentToCampus() {
+    const studentToAdd = props.unregisteredStudents.find(
+      (student) => student.studentId === dropdownValue
+    );
+    const updatedStudent = { ...studentToAdd, campusName: campusName };
+    axios
+      .put(`http://localhost:8080/students/${updatedStudent.studentId}`, updatedStudent)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }
+
+  const campusStudents = props.unregisteredStudents.map((student) => (
     <option key={student.studentId} value={student.studentId}>
       {student.firstName} {student.lastName}
     </option>
@@ -59,10 +78,6 @@ function EditCampus(props) {
   const studentRows = studentsOnCampus.map((student) => (
     <StudentRow key={student.studentId} student={student} />
   ));
-
-  function doNothing() {
-    console.log("hi");
-  }
 
   return (
     <>
@@ -110,11 +125,11 @@ function EditCampus(props) {
       <div className="show-student-campus">
         <h1>Students On Campus</h1>
 
-        <select className="campus-select" onChange={doNothing}>
+        <select className="campus-select" onChange={optionHandler}>
           <option value="">Select Student...</option>
           {campusStudents}
         </select>
-        <button className="edit-student-btn link-buttons" onClick={doNothing}>
+        <button className="edit-student-btn link-buttons" onClick={addStudentToCampus}>
           Add to Campus
         </button>
         {studentsOnCampus.length ? (

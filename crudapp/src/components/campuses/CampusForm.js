@@ -18,7 +18,6 @@ function CampusForm() {
   function formSubmitHandler(event) {
     event.preventDefault();
 
-    // collect Form data into new Campus object
     const newCampus = {
       name: event.target[0].value,
       address: event.target[1].value,

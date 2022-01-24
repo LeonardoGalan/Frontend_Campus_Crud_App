@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { EMPTY_CAMPUS } from "../../constants";
+import { StudentCard } from "../students";
 import StudentButton from "../students/StudentButton";
+import "../../styles/SingleCampus.css";
 
-function SingleCampus() {
+function SingleCampus(props) {
   const [selectedCampus, setSelectedCampus] = useState(EMPTY_CAMPUS);
+  const [campusStudents, setCampusStudents] = useState([]);
   const { campusName } = useParams();
 
   useEffect(() => {
@@ -15,12 +18,23 @@ function SingleCampus() {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/campuses/${campusName}/students`)
+      .then((res) => setCampusStudents(res.data))
+      .catch((err) => console.log(err));
+  }, [campusName]);
+
   function deleteCampus() {
     axios
       .delete(`http://localhost:8080/campuses/${campusName}`, selectedCampus)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }
+
+  const studentCards = campusStudents.map((student) => (
+    <StudentCard key={student.studentId} student={student} />
+  ));
 
   return (
     <>
@@ -37,6 +51,9 @@ function SingleCampus() {
             linkTo="/campuses"></StudentButton>
         </div>
       </div>
+
+      <h2 className="student-list-header">Students On Campus</h2>
+      <div className="student-list-container">{studentCards}</div>
     </>
   );
 }

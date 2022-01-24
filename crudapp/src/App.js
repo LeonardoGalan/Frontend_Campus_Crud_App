@@ -31,7 +31,9 @@ export default function App() {
     fetchCampuses();
   }, []);
 
-  /* campus handlers */
+  /* campus handlers and data */
+  const studentsWithNoCampus = students.filter((student) => !student.campusName);
+
   function retrieveUpdatedCampuses(updatedCampuses) {
     setStudents(updatedCampuses);
   }
@@ -60,9 +62,12 @@ export default function App() {
           path="/campuses"
           element={<AllCampuses campuses={campuses} retrieveHandler={retrieveUpdatedCampuses} />}
         />
-        <Route path="/campuses/:campusName" element={<SingleCampus campuses={campuses} />} />
+        <Route path="/campuses/:campusName" element={<SingleCampus />} />
         <Route path="/campuses/campus-form" element={<CampusForm />} />
-        <Route path="/campuses/:campusName/edit-campus" element={<EditCampus />} />
+        <Route
+          path="/campuses/:campusName/edit-campus"
+          element={<EditCampus unregisteredStudents={studentsWithNoCampus} />}
+        />
 
         {/* Student Routes */}
         <Route
